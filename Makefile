@@ -27,7 +27,7 @@ includes:
 	@echo These are the objects: $(OBJECTS)
 
 #$(BINDIR)/$(TARGET): $(OBJECTS)
-$(TARGET): $(TARGET).o $(OBJECTS) 
+$(BINDIR)/$(TARGET): $(TARGET).o $(OBJECTS) 
 	@$(LINKER) $@ $(LFLAGS) $(OBJECTS) $(TARGET).o
 	@echo "Linking complete!"
 
