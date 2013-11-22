@@ -11,13 +11,12 @@ int main(int argc, char *argv[])
   bool ispalindrome(int unsigned long);
   int unsigned long largestPalindrome(int unsigned long, int unsigned long, int unsigned long);
 
-  if (argc > 1)
-  {
+  if (argc > 1) {
     num1 = strtol(argv[1], (char **)NULL, 10);
     num2 = num1;
   } 
-  printf("%lu, %lu\n", num1, num2);
 
+  printf("%lu, %lu\n", num1, num2);
   palin = largestPalindrome(num1, num2, palin);
 
   printf("The number %lu is the largest palindrome\n", palin);
@@ -45,37 +44,30 @@ ispalindrome(int unsigned long num)
 int unsigned long
 largestPalindrome(int unsigned long a, int unsigned long b, int unsigned long palin)
 {
-  if (a < 1)
-  {
+  if (a < 1) {
     return palin;
   }
 
-  if (b < 1)
-  {
+  if (b < 1){
     return largestPalindrome(a-1, a-2, palin);
   }
 
   int unsigned long temp = a*b;
 
-  if (temp < palin)
-  {
-    if ((a-1)*(a-1) < palin)
-    {
+  if (temp < palin) {
+    if ((a-1)*(a-1) < palin) {
       return palin;
     } else { 
       return largestPalindrome(a-1, a-2, palin);
     }
   }
 
-  if (ispalindrome(temp))
-  {
-    if (temp > palin)
-    {
+  if (ispalindrome(temp)) {
+    if (temp > palin) {
       palin = temp;
       printf("New palindrome! %lu\n", palin);
 
-      if ((a-1)*(a-2) < palin)
-      {
+      if ((a-1)*(a-2) < palin) {
         return palin;
       } else {
         return largestPalindrome(a-1, a-2, palin);
@@ -84,7 +76,6 @@ largestPalindrome(int unsigned long a, int unsigned long b, int unsigned long pa
   }
   
   return largestPalindrome(a, b-1, palin);
-
 }
 
   
