@@ -3,8 +3,7 @@
 #include <limits.h>
 #include <stdbool.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   int unsigned long num1 = 999;
   int unsigned long num2 = 999;
   int unsigned long palin = 1;
@@ -25,8 +24,7 @@ int main(int argc, char *argv[])
 }
 
 bool 
-ispalindrome(int unsigned long num)
-{
+ispalindrome(int unsigned long num) {
   int unsigned long reverse = 0;
   int unsigned long temp = num;
 
@@ -42,13 +40,12 @@ ispalindrome(int unsigned long num)
 }
 
 int unsigned long
-largestPalindrome(int unsigned long a, int unsigned long b, int unsigned long palin)
-{
+largestPalindrome(int unsigned long a, int unsigned long b, int unsigned long palin) {
   if (a < 1) {
     return palin;
   }
 
-  if (b < 1){
+  if (b < 1) {
     return largestPalindrome(a-1, a-2, palin);
   }
 
