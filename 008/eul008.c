@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
   }
 
   filename = argv[1];
+  int group = atoi(argv[2]);
 
   FILE *file = fopen(filename, mode);
   assert(file);
@@ -51,11 +52,42 @@ int main(int argc, char *argv[])
       a++; 
     }
   }
-  
+  for (int i = 0; i < 1024; ++i)
+  {
+    printf("%d", arr[i]);
+  }
+
+
   printf("Closing the file... ");
   fclose(file);
   printf("Done.\n");
   
+  a = arr;
+  int index = 0;
+  int top = 0;
+  int temp = 0;
+
+  do {
+    temp = productOrZero(a+index, group);
+    printf("----------\n");
+    printf("First: %d - Last: %d\n", *(a+index), *(a+index+4));
+    printf("Temp: %d - Top: %d\n", temp, top);
+
+    if (temp > 0)
+    {
+      if (temp > top)
+      {
+        top = temp;
+      }
+      index++;
+    }
+    else
+    {
+      index = index - temp;
+    }
+
+  } while((*(a+index) != -49) || (*(a+index+4) != -49));
+
   return 0;
 }
 
@@ -68,7 +100,7 @@ int productOrZero(int a[], int k) {
     *number which represents its position relative to index. 
     */
 
-  long long product = 1;
+  int product = 1;
 
   do {
     if (*(a+k-1) == 0)
