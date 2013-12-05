@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
   }
 
   filename = argv[1];
+
   int group = atoi(argv[2]);
 
   FILE *file = fopen(filename, mode);
@@ -46,7 +47,9 @@ int main(int argc, char *argv[])
 
   while( !feof(file) ) {
     ch = fgetc(file);
-    if (ch != '\n')
+    printf("%c", ch);
+
+    if ((ch != '\n') && (ch != EOF))
     {
       *a = ch - '0';
       a++; 
@@ -86,13 +89,13 @@ int main(int argc, char *argv[])
       index = index - temp;
     }
 
-  } while((*(a+index) != -49) || (*(a+index+4) != -49));
+  } while((*(a+index) != -10) || (*(a+index+4) != -10));
 
   return 0;
 }
 
 
-int productOrZero(int a[], int k) {
+int productOrZero(int *array, int k) {
    /*
     *This function does two things: it tests to see if the elements pointed to 
     *between index and index+(k-1) are zero; if not it multiplies them together
@@ -103,13 +106,13 @@ int productOrZero(int a[], int k) {
   int product = 1;
 
   do {
-    if (*(a+k-1) == 0)
+    if (*(array+k-1) == 0)
     {
       return -k;
     } 
     else
     {
-      product = *(a+k-1) * product;
+      product = *(array+k-1) * product;
       k--;
     }
   } while(k > 0);
