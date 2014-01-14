@@ -17,36 +17,18 @@ int main(int argc, char *argv[])
    * 
    * Any arbitrary element of Pascal's triangle can be generated directly 
    * by x choose y, where x is the row and y is the index of the element
-   * in that row. */
-
+   * in that row. 
+   *
+   * However, for the problem at hand even long long unsigned is too small to
+   * for a straightforward calculation of the needed value using x choose y
+   * (or binomial expansion, as it is also known). Therefore a recursive 
+   * method is implemented which caches previously calculated values to improve
+   * the exponential time complexity. */
   
   long long unsigned array[40][40] = {0};
 
-  printf("Let's try 2, 2 (should be 6): %llu\n", lattice_value(array, 2, 2));
-  printf("Let's try 3, 3 (should be 20): %llu\n", lattice_value(array, 3, 3));
-  printf("Let's try 3, 4 (should be 35): %llu\n", lattice_value(array, 3, 4));
-  printf("Let's try 20, 20 (should be the answer): %llu\n", lattice_value(array, 20, 20));
+  printf("should be the answer: %llu\n", lattice_value(array, 20, 20));
 
-
-
-
-
-
-
-  for (int i = 0; i < 30; ++i)
-  {
-    printf("%llu\n", factorial(i));
-  }
-
-  printf("long long unsiged max: %llu\n", ULLONG_MAX);
-
-  printf("5 choose 3: %llu\n", n_choose_r(5, 3));
-  printf("5 choose 3, new: %llu\n", new_choose_r(5, 3));
-  printf("9 choose 3: %llu\n", n_choose_r(9, 3));
-  printf("9 choose 3, new: %llu\n", new_choose_r(9, 3));
-  printf("15 choose 3: %llu\n", n_choose_r(15, 3));
-  printf("15 choose 3, new: %llu\n", new_choose_r(15, 3));
-  printf("This is the nunber of paths: %llu\n", new_choose_r(38, 19));
   return 0;
 }
 
@@ -91,8 +73,6 @@ long long unsigned new_choose_r(long n, long r)
   while(n > r) {
     numer *= n--;
   }
-
-  printf("Numer: %llu / Denom: %llu\n", numer, denom);
   return (numer / denom);
 }
 
